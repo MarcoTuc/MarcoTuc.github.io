@@ -5,7 +5,7 @@ let generator = null;
 
 async function initializeModel() {
     try {
-        generator = await pipeline('text2text-generation', 'Xenova/t5-small');
+        generator = await pipeline('text-generation', 'Xenova/gpt2');
         console.log('Model loaded successfully');
     } catch (err) {
         console.error('Error loading model:', err);
@@ -20,8 +20,9 @@ async function generateText(inputText) {
 
     try {
         const result = await generator(inputText, {
-            max_length: 100,
-            num_return_sequences: 1
+            max_new_tokens: 50,
+            num_return_sequences: 1,
+            temperature: 0.7
         });
         return result[0].generated_text;
     } catch (err) {
@@ -33,4 +34,4 @@ async function generateText(inputText) {
 // Initialize the model when the script loads
 initializeModel();
 
-export { generateText }; 
+export { generateText };
