@@ -15,16 +15,31 @@ async function initializeModel() {
 async function generateText(inputText) {
     if (!generator) {
         console.log('Model is still loading...');
-        return;
+        return 'Model is still loading, please wait...';
+    }
+
+    if (!inputText || inputText.trim() === '') {
+        return 'Please enter some text to generate from.';
     }
 
     try {
         const result = await generator(inputText, {
-            max_new_tokens: 50,
+            max_new_tokens: 100, // Increased token length
             num_return_sequences: 1,
-            temperature: 0.7
+            temperature: 0.9, // Increased temperature for more creative outputs
+            do_sample: true,
+            top_k: 50,
+            top_p: 0.95
         });
-        return result[0].generated_text;
+
+        if (!result || !result[0] || !result[0].generated_text) {
+            throw new Error('No text generated');
+        }
+
+        // Remove the input prompt from the generated text
+        const generatedText = result[0].generated_text.slice(inputText.length);
+        return generatedText || 'Could not generate meaningful text. Please try again.';
+
     } catch (err) {
         console.error('Error generating text:', err);
         return 'Error generating text. Please try again.';
