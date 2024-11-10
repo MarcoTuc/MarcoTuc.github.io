@@ -36,7 +36,10 @@ let nodes = mainGroup.append("g")
     .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
-        .on("end", dragended));
+        .on("end", dragended))
+    .on("click", select_node);
+
+
 
 // Add circles to nodes
 nodes.append("circle")
@@ -77,3 +80,27 @@ function dragended(event) {
     event.subject.fy = null;
 }
 
+let centralNode = nodes.filter(d => d.central);
+let selectedNode = centralNode
+
+function select_node(event) {
+    
+    nodes.selectAll("text").style("font-weight", "normal")
+    
+    if (!d3.select(this).datum().central) {
+        if (d3.select(this).datum() != selectedNode.datum()) {
+            selectedNode = d3.select(this)
+            selectedNode.select("text").style("font-weight", "bold") 
+        }
+        else {
+            selectedNode.select("text").style("font-weight", "normal") 
+            centralNode.select("text").style("font-weight", "bold")
+            selectedNode = centralNode
+        }
+    }
+
+    else {
+        centralNode.select("text").style("font-weight", "bold")
+    }
+
+};
