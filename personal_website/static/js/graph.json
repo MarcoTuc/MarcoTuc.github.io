@@ -1,0 +1,38 @@
+[{
+    "id": "marco",
+    "label": "Marco Tuccio",
+    "central": true,
+    "children": [
+        {
+            "id": "about",
+            "label": "About",
+            "children": []
+        },
+        {
+            "id": "photos",
+            "label": "Photos",
+            "children": []
+        },
+        {
+            "id": "projects",
+            "label": "Projects",
+            "children": [
+                {
+                    "id": "proj_1",
+                    "label": "Project 1",
+                    "children": []
+                },
+                {
+                    "id": "proj_2",
+                    "label": "Project 2",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "contact",
+            "label": "Contact",
+            "children": []
+        }
+    ]
+}]

@@ -1,4 +1,5 @@
-import { data } from './graph_data.js';
+// import { data } from './graph_data.js';
+import { data } from "./parse_graph.js";
 
 // Set up the SVG
 const width = window.innerWidth;
@@ -40,7 +41,6 @@ let nodes = mainGroup.append("g")
     .on("click", select_node);
 
 
-
 // Add circles to nodes
 nodes.append("circle")
     .attr("r", n => n.central ? 95 : 35)
@@ -80,8 +80,10 @@ function dragended(event) {
     event.subject.fy = null;
 }
 
+
 let centralNode = nodes.filter(d => d.central);
 let selectedNode = centralNode
+
 
 function select_node(event) {
     
