@@ -8,6 +8,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/nodes/projects/matrix_heatmap")
+def heatmap():
+    return render_template("nodes/matrix_heatmap.html")
+
 @app.route('/compute_matrix', methods=['POST'])
 def compute_matrix():
     data = request.json

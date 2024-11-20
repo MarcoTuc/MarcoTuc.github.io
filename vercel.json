@@ -1,9 +1,9 @@
 {
-
-    "rewrites": [
-  
-      { "source": "/(.*)", "destination": "/marcotucc.io/app" }
-  
-    ]
-  
-  }
+  "version": 2,
+  "builds": [
+    { "src": "marcotucc.io/app.py", "use": "@vercel/python" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "marcotucc.io/app.py" }
+  ]
+}
