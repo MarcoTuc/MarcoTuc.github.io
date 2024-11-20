@@ -106,3 +106,54 @@ function select_node(event) {
     }
 
 };
+
+function navigate_to_url(event) {
+    const node = d3.select(this).datum();
+    const nodeUrl = node.url
+
+    // Use the History API to change the URL without reloading the page
+    history.pushState({ nodeId: node.id }, node.name, nodeUrl);
+    document.getElementById("content-panel").innerHTML = `<p>${node.label}</p>`
+
+    // // Fetch node content using AJAX
+    // fetch(nodeUrl)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         if (data.error) {
+    //             document.getElementById('content-panel').innerHTML = `<p>${data.error}</p>`;
+    //         } else {
+    //             document.getElementById('content-panel').innerHTML = `
+    //                 <h1>${data.name}</h1>
+    //                 <p>${data.description}</p>
+    //             `;
+    //         }
+    //     })
+    //     .catch(error => console.error('Error fetching node content:', error));
+}
+
+nodes.on("click", navigate_to_url);
+
+// // Handle browser back/forward navigation
+// window.onpopstate = function(event) {
+//     if (event.state && event.state.nodeId) {
+//         const nodeId = event.state.nodeId;
+//         const nodeUrl = event.state.nodeUrl;
+        
+//         document.getElementById("content-panel").innerHTML = 
+
+//         // // Fetch and display the content for the node
+//         // fetch(nodeUrl)
+//         //     .then(response => response.json())
+//         //     .then(data => {
+//         //         if (data.error) {
+//         //             document.getElementById('content-panel').innerHTML = `<p>${data.error}</p>`;
+//         //         } else {
+//         //             document.getElementById('content-panel').innerHTML = `
+//         //                 <h1>${data.name}</h1>
+//         //                 <p>${data.description}</p>
+//         //             `;
+//         //         }
+//         //     })
+//         //     .catch(error => console.error('Error fetching node content:', error));
+//     }
+// };

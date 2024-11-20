@@ -2,6 +2,7 @@
     "id": "marco",
     "label": "Marco Tuccio",
     "central": true,
+    "url": "/",
     "children": [
         {
             "id": "about",
@@ -18,8 +19,8 @@
             "label": "Projects",
             "children": [
                 {
-                    "id": "proj_1",
-                    "label": "Project 1",
+                    "id": "matrix_heatmap",
+                    "label": "Matrix",
                     "children": []
                 },
                 {
